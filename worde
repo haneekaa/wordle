@@ -1,0 +1,90 @@
+import random
+
+
+import sys
+
+try:
+    color = sys.stdout.shell
+except AttributeError:
+    raise RuntimeError("Use IDLE")
+
+
+def wordle():
+    global wins,games
+    words = [
+    "force","lunch", "forge", "forth", "forty", "forum", "found", "frame", "frank", "fraud", "fresh", "fried", "front", "frost", "fruit", "fully", "funny", "gauge", "genre", "ghost", "giant", "glass", "globe", "glory", "glove", "going", "grace", "grade", "grain", "grams", "grand", "grill", "gross", "group", "grove", "grown", "guard", "guess", "guest", "guide", "guild", "guilt", "habit", "handy", "happy", "harsh", "hatch", "heart", "heath", "heavy", "hedge", "hello", "hence", "hobby", "honey", "honor", "horse", "hotel", "house", "human", "hurry", "ideal", "image", "imply", "index", "inner", "irony", "issue", "ivory", "japan", "jewel", "joint", "judge", "juice", "knife", "knock", "known", "label", "labor", "lance", "large", "laser", "later", "laugh", "layer", "learn", "lease", "least", "leave", "legal", "lemon", "local", "lodge", "logic", "loose", "lotus", "lover", "lower", "loyal", "lucky", "lunch", "album", "alert", "alien", "align", "alloy", "alone","along", "aloud", "alpha", "altar", "alter", "amber", "amend", "amino", "among", "ample","angel", "anger", "angle", "angry", "ankle", "apart", "apple", "apply", "arena", "argue","audit", "avoid", "await", "awake", "award", "aware", "awful", "bacon", "badge", "badly",    "baked", "baker", "baron", "bases", "basic", "basil", "basin", "basis", "batch", "beach","beard", "beast", "began", "begin", "begun", "being", "belly", "below", "bench", "berry","blind", "block", "blood", "bloom", "blown", "blues", "blunt", "board","candy", "canon", "cargo", "carol", "carry", "catch", "cater", "cause", "cease", "chain","chair", "chalk", "chaos", "charm", "chart", "chase", "cheap", "check", "cheek", "cheer","click", "cliff", "climb", "clock", "close", "cloth", "cloud", "coach", "coast", "colon", "crest", "cried", "cries", "crime", "crisp", "cross", "crowd", "crown", "crude", "cruel", "crush", "crust", "cubic", "curry", "curve", "cycle", "daddy", "daily", "dairy", "daisy", "dance", "dated", "dealt", "death", "debit", "debut", "decay", "decor", "delay", "delta", "dress", "dried", "drift", "drill", "drink", "drive", "drove", "drunk", "dusty", "dying", "eager", "eagle", "early", "earth", "eaten", "eight", "elbow", "elder", "elect", "elite", "empty", "enemy", "enjoy", "enter" 
+    ]
+    word = random.choice(words)
+
+    list2=['g','g','g','g','g']
+
+    triesleft = 5
+    print()
+    print('-----')
+    print()
+    while triesleft>0:
+        guess = str(input('enter your guess : '))
+
+        list1 = ['b','b','b','b','b']
+        for i in range(5):
+            if guess[i] in word:
+                list1[i]= 'y'
+                if guess[i]==word[i]:
+                    list1[i]= 'g'
+
+        for i in range(5):
+            a = guess[i]
+            if list1[i]=='g':
+                color.write(a,"STRING")
+            elif list1[i]=='y':
+                color.write(a,"KEYWORD")
+            elif list1[i]=='b':
+                color.write(a,"COMMENT")
+        print()        
+            
+
+        if list1==list2:
+            print()
+            print('you guessed the word! yay!')
+            wins+=1
+            break
+        
+        triesleft-=1
+        
+    if triesleft==0:
+        print('oops, looks like you\'re out of tries! loser')
+        print('the word was ', word)
+
+    games+=1
+
+    print()
+    print('STATISTICS')
+    print('games played : ',games)
+    print('wins : ',wins)
+
+    choice = input('do you want to play agin? (yes or no) : ')
+    if choice=='yes':
+        wordle()
+    elif choice=='no':
+        print('byebye!')
+    
+print('-------------------------------------------')
+print('worde')
+print('-------------------------------------------')
+
+print('welcome to worde!')
+print('')
+print('how to play-')
+print('guess the random 5 letter word')
+print('you get 5 tries to guess')
+print('')
+print('if green, then the letter is in the correct spot')
+print('if yellow, then the letter is in the word, but in a different spot')
+print('if red, the letter is not in the word')
+print('')
+print('')
+
+wins =0
+games = 0
+
+wordle()
