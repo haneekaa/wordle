@@ -69,7 +69,7 @@ def wordle():
         print('byebye!')
     
 print('-------------------------------------------')
-print('𝔀𝓸𝓻𝓭𝓮')
+print('worde')
 print('-------------------------------------------')
 
 print('welcome to worde!')
